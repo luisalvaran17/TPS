@@ -29,7 +29,7 @@ public class Persistencia {
         try
         {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                con=DriverManager.getConnection("jdbc:mysql://localhost/hojadevida", "root", "root");
+                con=DriverManager.getConnection("jdbc:mysql://localhost/TPS_DB", "root", "root");
                 areadb = con.createStatement();
                 System.out.println("Conectado");
         }
@@ -63,6 +63,9 @@ public class Persistencia {
                 System.out.println("No se ha conectado");
                 return false;
             }
+    }
+    public static void main(String[] args) {
+        conectar();
     }
 }
 
