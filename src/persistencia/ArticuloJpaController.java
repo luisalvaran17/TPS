@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.Articulo;
 import modelo.Salida;
 import persistencia.exceptions.IllegalOrphanException;
@@ -27,6 +28,11 @@ import persistencia.exceptions.NonexistentEntityException;
  */
 public class ArticuloJpaController implements Serializable {
 
+    
+    public ArticuloJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("TPS_entrega0PU");
+    }
+    
     public ArticuloJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
