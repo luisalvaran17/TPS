@@ -29,7 +29,7 @@ public class Persistencia {
         try
         {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                con=DriverManager.getConnection("jdbc:mysql://localhost/TPS_DB", "root", "root");
+                con=DriverManager.getConnection("jdbc:mysql://localhost:3308/tps_db", "root", "root");
                 areadb = con.createStatement();
                 System.out.println("Conectado");
         }

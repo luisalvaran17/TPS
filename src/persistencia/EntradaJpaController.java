@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.Entrada;
 import persistencia.exceptions.IllegalOrphanException;
 import persistencia.exceptions.NonexistentEntityException;
@@ -27,6 +28,14 @@ import persistencia.exceptions.NonexistentEntityException;
  */
 public class EntradaJpaController implements Serializable {
 
+    /******************************************************/
+    
+    public EntradaJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("TPS_entrega0PU");
+    }
+    
+    /******************************************************/
+    
     public EntradaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }

@@ -1,1 +1,10 @@
 /src/META-INF/
+nbproject/private/private.properties
+
+src/reportes/Persistencia.java
+
+build/classes/reportes/Persistencia.class
+
+*.class
+
+build/classes/META-INF/persistence.xml

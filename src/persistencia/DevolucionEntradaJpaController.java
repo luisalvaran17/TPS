@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import modelo.DevolucionEntrada;
@@ -23,6 +24,14 @@ import persistencia.exceptions.NonexistentEntityException;
  */
 public class DevolucionEntradaJpaController implements Serializable {
 
+    /**************************************/
+    
+    public DevolucionEntradaJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("TPS_entrega0PU");
+    }
+    
+    /**************************************/
+   
     public DevolucionEntradaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }

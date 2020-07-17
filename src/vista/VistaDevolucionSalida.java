@@ -69,11 +69,21 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jTextField_ID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_IDActionPerformed(evt);
+            }
+        });
 
         jTextField_fechaDev.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_fechaDev.setText("HOY");
         jTextField_fechaDev.setToolTipText("Se registrará automáticamente la fecha de hoy");
         jTextField_fechaDev.setEnabled(false);
+        jTextField_fechaDev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_fechaDevActionPerformed(evt);
+            }
+        });
 
         jTextField_cantidadDev.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_cantidadDev.setToolTipText("Ingrese la cantidad del producto que desea devolver");
@@ -171,6 +181,14 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButton_confirmarDevActionPerformed
+
+    private void jTextField_fechaDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_fechaDevActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_fechaDevActionPerformed
+
+    private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IDActionPerformed
 
     /**
      * @param args the command line arguments
