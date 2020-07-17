@@ -5,10 +5,14 @@
  */
 package vista;
 
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.DevolucionSalidaLogica;
+import modelo.Articulo;
 import modelo.DevolucionSalida;
+import modelo.Salida;
+import persistencia.ArticuloJpaController;
 import persistencia.DevolucionSalidaJpaController;
 import persistencia.SalidaJpaController;
 
@@ -21,6 +25,7 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
     public DevolucionSalidaJpaController devolucionSalidaDAO = new DevolucionSalidaJpaController();
     public SalidaJpaController salidaDAO = new SalidaJpaController();
     public DevolucionSalidaLogica devolucionSalidaLogica = new DevolucionSalidaLogica();
+    public ArticuloJpaController articuloDAO = new ArticuloJpaController();
     
 
     /**
@@ -29,7 +34,32 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
     public VistaDevolucionSalida() {
         initComponents();
     }
-
+    
+    public void actualizarSalida(String idSalida, int cantidadDev){
+        
+        Salida salida = salidaDAO.findSalida(Integer.parseInt(idSalida));
+        int cantidadActual = salida.getCantidadArticulo();
+        
+        try {
+            salida.setCantidadArticulo(cantidadActual - cantidadDev);
+            salidaDAO.edit(salida);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
+    /*public void actualizarInventarioArticulo(String idArticulo){
+            
+        Articulo articulo = articuloDAO.findArticulo(Integer.parseInt(idArticulo));
+        try {
+            articulo.setCantidadArticulo(1000);
+            articuloDAO.edit(articulo);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,17 +184,36 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_cancelarDevActionPerformed
 
     private void jButton_confirmarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_confirmarDevActionPerformed
+        String idSalida;
+        int cantidadDev, cantidadActual;
         try {
-            DevolucionSalida nuevaDevolucionSalida = new DevolucionSalida();
-            Date fechaActual = new Date(2020, 07, 16);
             
-            nuevaDevolucionSalida.setFechaDevSalida(fechaActual);
-            nuevaDevolucionSalida.setCantidadDevSalida(Integer.parseInt(jTextField_cantidadDev.getText()));
-            nuevaDevolucionSalida.setIdSalida(salidaDAO.findSalida(Integer.parseInt(jTextField_ID.getText())));
-            devolucionSalidaDAO.create(nuevaDevolucionSalida);
-            //devolucionSalidaLogica.registrarDevolucion(nuevaDevolucionSalida);
-            JOptionPane.showMessageDialog(null, "Devolucion de salida registrada exitosamente");
-            
+            if ("".equals(jTextField_ID.getText()) || "".equals(jTextField_cantidadDev.getText())) {
+                JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
+                
+            }else{
+                DevolucionSalida nuevaDevolucionSalida = new DevolucionSalida();
+                //Date fechaActual = new Date(2020, 07, 16);
+                Calendar fechaActual = Calendar.getInstance();
+                Date date = fechaActual.getTime();
+
+                nuevaDevolucionSalida.setFechaDevSalida(date);
+                nuevaDevolucionSalida.setCantidadDevSalida(Integer.parseInt(jTextField_cantidadDev.getText()));
+                nuevaDevolucionSalida.setIdSalida(salidaDAO.findSalida(Integer.parseInt(jTextField_ID.getText())));
+
+                idSalida = nuevaDevolucionSalida.getIdSalida().getIdSalida().toString();
+                cantidadDev = Integer.parseInt(jTextField_cantidadDev.getText());
+                cantidadActual = nuevaDevolucionSalida.getIdSalida().getCantidadArticulo();
+                System.out.println(idSalida);
+
+                if (cantidadDev > cantidadActual){
+                    JOptionPane.showMessageDialog(null, "La cantidad de productos a devolver supera la cantidad que salió, ingrese el valor correcto");
+                }else{
+                    devolucionSalidaLogica.registrarDevolucion(nuevaDevolucionSalida);
+                    actualizarSalida(idSalida, cantidadDev);
+                    JOptionPane.showMessageDialog(null, "Devolucion de salida registrada exitosamente");
+                }
+            }
         } 
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

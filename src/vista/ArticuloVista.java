@@ -26,6 +26,7 @@ public class ArticuloVista extends javax.swing.JFrame {
     public ArticuloVista() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,16 +176,21 @@ public class ArticuloVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+       
+        Articulo nuevoArticulo = new Articulo();
         try {
-            Articulo nuevoArticulo = new Articulo();
-            
-            nuevoArticulo.setIdArticulo(7);
-            nuevoArticulo.setNombreArticulo(jTextField_NombreArticulo.getText());
-            nuevoArticulo.setPrecioArticulo(Integer.parseInt(jTextField_precioArticulo.getText()));
-            nuevoArticulo.setCantidadArticulo(Integer.parseInt(jTextField_cantidadArticulo.getText()));
-            articuloLogica.registrarArticulo(nuevoArticulo);
-            JOptionPane.showMessageDialog(null,"Registro realizado con exito");
-            
+            if ("".equals(jTextField_ID.getText()) || "".equals(jTextField_NombreArticulo.getText()) || 
+                    "".equals(jTextField_cantidadArticulo.getText()) || "".equals(jTextField_precioArticulo.getText())) {
+                JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
+                
+            }else{
+                nuevoArticulo.setIdArticulo(7);
+                nuevoArticulo.setNombreArticulo(jTextField_NombreArticulo.getText());
+                nuevoArticulo.setPrecioArticulo(Integer.parseInt(jTextField_precioArticulo.getText()));
+                nuevoArticulo.setCantidadArticulo(Integer.parseInt(jTextField_cantidadArticulo.getText()));
+                articuloLogica.registrarArticulo(nuevoArticulo);
+                JOptionPane.showMessageDialog(null,"Registro realizado con exito");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             System.out.println(e.getMessage());
