@@ -6,6 +6,7 @@
 package vista;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.EntradaLogica;
@@ -41,8 +42,6 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         jTextFieldIdArticulo = new javax.swing.JTextField();
         jTextFieldCantidad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldFecha = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -68,9 +67,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
         jLabel2.setText("CANTIDAD");
 
-        jLabel3.setText("FECHA");
-
-        jButton1.setText("REGISTRAR");
+        jButton1.setText("REGISTRAR ENTRADA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -117,9 +114,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 .addGap(172, 172, 172)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel2)
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -128,7 +123,6 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldFecha)
                     .addComponent(jTextFieldCantidad)
                     .addComponent(jTextFieldIdArticulo)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,7 +144,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -158,11 +152,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,8 +181,9 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
         try {
 
-            Date fechaEntrada = new SimpleDateFormat("dd/MM/yyyy").parse(jTextFieldFecha.getText());
-            Articulo nuevoArticulo = new Articulo();
+            Calendar fechaActual = Calendar.getInstance();
+            Date fechaEntrada = fechaActual.getTime();
+            
             Entrada nuevaEntrada = new Entrada();
 
             nuevaEntrada.setIdArticulo(articulo.findArticulo(Integer.parseInt(jTextFieldIdArticulo.getText())));
@@ -205,7 +196,6 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             
             jTextFieldIdArticulo.setText("");
             jTextFieldCantidad.setText("");
-            jTextFieldFecha.setText("");
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -283,10 +273,8 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextFieldCantidad;
-    private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldIdArticulo;
     // End of variables declaration//GEN-END:variables
 }
