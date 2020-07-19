@@ -80,8 +80,8 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         test = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 360));
-        setMinimumSize(new java.awt.Dimension(700, 360));
+        setMaximumSize(new java.awt.Dimension(680, 360));
+        setMinimumSize(new java.awt.Dimension(680, 360));
         setPreferredSize(new java.awt.Dimension(680, 360));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,7 +134,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         });
         getContentPane().add(jButton_cancelarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 170, 40));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 460, -1));
-        getContentPane().add(test, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 30, -1));
+        getContentPane().add(test, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 30, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
