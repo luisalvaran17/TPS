@@ -22,7 +22,7 @@ public class EntradaLogica {
             throw new Exception("Por favor, llene los campos");
         }
         
-        if (entrada.getIdArticulo() == null || entrada.getCantidadArticulo() == 0 || entrada.getFechaEtrada() == null){
+        if (entrada.getIdArticulo() == null || entrada.getCantidadArticulo() == 0 ){
             
             throw new Exception("Asegúrese de completar los campos del formulario");
         }
