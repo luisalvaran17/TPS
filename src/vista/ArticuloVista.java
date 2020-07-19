@@ -195,6 +195,13 @@ public class ArticuloVista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
             System.out.println(e.getMessage());
         }
+        
+        
+        jTextField_NombreArticulo.setText("");
+        jTextField_cantidadArticulo.setText("");
+        jTextField_precioArticulo.setText("");
+        
+        
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**

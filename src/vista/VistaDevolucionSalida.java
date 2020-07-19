@@ -99,11 +99,6 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jTextField_ID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_ID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_IDActionPerformed(evt);
-            }
-        });
 
         jTextField_fechaDev.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_fechaDev.setText("HOY");

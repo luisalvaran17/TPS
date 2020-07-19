@@ -127,6 +127,9 @@
         <Property name="toolTipText" type="java.lang.String" value="Se registrar&#xe1; autom&#xe1;ticamente la fecha de hoy"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_fechaDevActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_cantidadDev">
       <Properties>
