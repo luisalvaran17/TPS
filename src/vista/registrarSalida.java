@@ -197,9 +197,7 @@ public class registrarSalida extends javax.swing.JFrame {
                 actualizarArticulo(idArticulo, cantLlevar);
                 JOptionPane.showMessageDialog(null, "Salida registrada exitosamente");
             }
-
-            
-            
+      
             jTextFieldIdArticulo.setText("");
             jTextFieldCantidad.setText("");
             jTextFieldFecha.setText("");
