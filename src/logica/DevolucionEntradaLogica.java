@@ -24,9 +24,10 @@ public class DevolucionEntradaLogica {
         }
         
         if (devEntrada.getIdEntrada() == null) {
-            throw new Exception ("Debe indicar el numero de pedido");
+            throw new Exception ("Debe indicar el número del pedido");
         }
         
         devolucionEntradaDAO.create(devEntrada);
     }
+    /*******************************************************/
 }

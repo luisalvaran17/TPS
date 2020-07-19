@@ -30,7 +30,8 @@ public class DevolucionEntradaJpaController implements Serializable {
         this.emf = Persistence.createEntityManagerFactory("TPS_entrega0PU");
     }
     
-    /**************************************/
+    /**
+     * @param emf************************************/
    
     public DevolucionEntradaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
