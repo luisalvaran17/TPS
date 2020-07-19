@@ -8,8 +8,6 @@ package vista;
 import com.placeholder.PlaceHolder;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.DevolucionEntradaLogica;
 import modelo.DevolucionEntrada;
@@ -87,6 +85,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         jButton_cancelarDev = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         test = new javax.swing.JTextField();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(680, 360));
@@ -145,6 +144,14 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 460, -1));
         getContentPane().add(test, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 30, -1));
 
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -155,13 +162,12 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         String idEntrada;
         int cantidadDev, cantidadActual;
         try {
-
+            
             if ("".equals(jTextFieldID.getText()) || "".equals(jTextField_cantidadDev.getText())) {
                 JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
-
-            } else {
+                
+            }else{
                 DevolucionEntrada nuevaDevolucionEntrada = new DevolucionEntrada();
-                //Date fechaActual = new Date(2020, 07, 16);
                 Calendar fechaActual = Calendar.getInstance();
                 Date date = fechaActual.getTime();
 
@@ -174,22 +180,20 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 cantidadActual = nuevaDevolucionEntrada.getIdEntrada().getCantidadArticulo();
                 System.out.println(idEntrada);
 
-                if (cantidadDev > cantidadActual) {
-                    JOptionPane.showMessageDialog(null, "La cantidad de productos a devolver supera la cantidad que ingresaron, ingrese el valor correcto");
-                } else {
+                if (cantidadDev > cantidadActual){
+                    JOptionPane.showMessageDialog(null, "La cantidad de productos a devolver supera la cantidad que salió, ingrese el valor correcto");
+                }else{
                     devolucionEntradaLogica.registrarDevolucion(nuevaDevolucionEntrada);
-//                    JOptionPane.showMessageDialog(null, "Devolucion registrada exitosamente");
                     actualizarEntrada(idEntrada, cantidadDev);
+                    JOptionPane.showMessageDialog(null, "Devolucion de salida registrada exitosamente");
                 }
             }
-        } catch (NumberFormatException ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());       
-            JOptionPane.showMessageDialog(null, "Los campos \"Producto\" y \"Devolución\" deben ser numéricos.");
+        } 
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Los campos para \"Producto\" y \"Devolución\" deben ser numéricos");
             jTextFieldID.setText("");
             jTextField_cantidadDev.setText("");
             System.out.println(ex.getMessage());
-        } catch (Exception ex) {
-            Logger.getLogger(VistaDevolucionEntrada.class.getName()).log(Level.SEVERE, null, ex);
         }
         /**
          * *******************************************************************
@@ -207,6 +211,11 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
     private void jTextField_cantidadDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cantidadDevActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_cantidadDevActionPerformed
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +253,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JButton jButton_cancelarDev;
     private javax.swing.JButton jButton_confirmarDev;
     private javax.swing.JLabel jLabel1;

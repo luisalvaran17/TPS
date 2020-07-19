@@ -199,6 +199,7 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
+        jTextFieldBuscar.setText("");
         tablaTodos();
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
