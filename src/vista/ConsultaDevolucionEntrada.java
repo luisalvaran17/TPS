@@ -6,6 +6,7 @@
 package vista;
 
 import com.placeholder.PlaceHolder;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +41,7 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
     public void tablaTodos(){
             List<DevolucionEntrada> devEntrada = devolucionEntradaDAO.findDevolucionEntradaEntities();
             DefaultTableModel modelo = new DefaultTableModel();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             
                 modelo.addColumn("Articulo");
                 modelo.addColumn("ID Devolución");
@@ -52,7 +54,7 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
                     datos[0] = e.getIdEntrada().getIdArticulo().getNombreArticulo();
                     datos[1] = e.getIdDevolucionEntrada().toString();
                     datos[2] = e.getIdEntrada().getIdEntrada().toString();
-                    datos[3] = e.getFechaDevEntrada().toString();
+                    datos[3] = sdf.format(e.getFechaDevEntrada());
                     datos[4] = Integer.toString (e.getCantidadDevEntrada());
                     
                     modelo.addRow(datos);
@@ -66,7 +68,8 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
     public void tablaBuscar(){
         List<DevolucionEntrada> devEntrada = devolucionEntradaDAO.findDevolucionEntradaEntities();
         DefaultTableModel modelo = new DefaultTableModel();
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm");
+        
         modelo.addColumn("Articulo");
         modelo.addColumn("ID Devolución");
         modelo.addColumn("ID Entrada");
@@ -82,7 +85,7 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
                 datos[0] = e.getIdEntrada().getIdArticulo().getNombreArticulo();
                 datos[1] = e.getIdDevolucionEntrada().toString();
                 datos[2] = e.getIdEntrada().getIdEntrada().toString();
-                datos[3] = e.getFechaDevEntrada().toString();
+                datos[3] = sdf.format(e.getFechaDevEntrada());
                 datos[4] = Integer.toString (e.getCantidadDevEntrada());
                 modelo.addRow(datos);
                 }   
