@@ -54,10 +54,13 @@ public class consultarSalida extends javax.swing.JFrame {
         if ("".equals(jTextFieldBusqueda.getText())){
             JOptionPane.showMessageDialog(null, "No ingresó ningún ID ");
         }
+        
         else if( salidaDAO.findSalida(Integer.parseInt(jTextFieldBusqueda.getText())) == null){
             JOptionPane.showMessageDialog(null, "El ID ingresado no es correcto o no existe en la Base de Datos ");
         } else{
+            
                 for(Salida s: salida){
+                    
                     if(s.getIdSalida() == Integer.parseInt(jTextFieldBusqueda.getText())){
                         
                         datos[0] = s.getIdArticulo().getNombreArticulo();
@@ -68,8 +71,7 @@ public class consultarSalida extends javax.swing.JFrame {
                     }
                 }
                 jTable1.setModel(tabla);
-            }
-        
+            }        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
