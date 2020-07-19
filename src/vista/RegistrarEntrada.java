@@ -10,8 +10,6 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.EntradaLogica;
-import logica.salidaLogica;
-import modelo.Articulo;
 import modelo.Entrada;
 import persistencia.ArticuloJpaController;
 
@@ -180,15 +178,15 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-
-            Calendar fechaActual = Calendar.getInstance();
-            Date fechaEntrada = fechaActual.getTime();
+            
+            String pattern = "MM-dd-yyyy";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             
             Entrada nuevaEntrada = new Entrada();
 
             nuevaEntrada.setIdArticulo(articulo.findArticulo(Integer.parseInt(jTextFieldIdArticulo.getText())));
             nuevaEntrada.setCantidadArticulo(Integer.parseInt(jTextFieldCantidad.getText()));
-            nuevaEntrada.setFechaEtrada(fechaEntrada);
+            nuevaEntrada.setFechaEtrada(new Date());
 
             entradaLogica.registrar(nuevaEntrada);
             

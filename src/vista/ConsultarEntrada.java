@@ -5,7 +5,6 @@
  */
 package vista;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
