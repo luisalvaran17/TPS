@@ -20,7 +20,7 @@ import persistencia.SalidaJpaController;
  *
  * @author luisalvaranleavpc
  */
-public class consultarArticulo extends javax.swing.JFrame {
+public class ConsultarArticulo extends javax.swing.JFrame {
     public DevolucionSalidaJpaController devolucionSalidaDAO = new DevolucionSalidaJpaController();
     public ArticuloJpaController articuloDAO = new ArticuloJpaController();
     public SalidaJpaController salidaDAO = new SalidaJpaController();
@@ -28,7 +28,7 @@ public class consultarArticulo extends javax.swing.JFrame {
     /**
      * Creates new form consultarDevolucionSalida
      */
-    public consultarArticulo() {
+    public ConsultarArticulo() {
         initComponents();
     }
 
@@ -233,13 +233,13 @@ public class consultarArticulo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(consultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(consultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(consultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(consultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -247,7 +247,7 @@ public class consultarArticulo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new consultarArticulo().setVisible(true);
+                new ConsultarArticulo().setVisible(true);
             }
         });
     }

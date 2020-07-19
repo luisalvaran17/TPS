@@ -264,14 +264,14 @@ public class VistaDevolucionSalida extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        registrarSalida nuevoL = new registrarSalida();
+        RegistrarSalida nuevoL = new RegistrarSalida();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        consultarDevolucionSalida nuevoL = new consultarDevolucionSalida();
+        ConsultarDevolucionSalida nuevoL = new ConsultarDevolucionSalida();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

@@ -17,7 +17,7 @@ import persistencia.SalidaJpaController;
  *
  * @author Personal
  */
-public class consultarSalida extends javax.swing.JFrame {
+public class ConsultarSalida extends javax.swing.JFrame {
 
     /**
      * Creates new form consultarSalida
@@ -27,7 +27,7 @@ public class consultarSalida extends javax.swing.JFrame {
     public SalidaJpaController salidaDAO = new SalidaJpaController();
     
     
-    public consultarSalida() {
+    public ConsultarSalida() {
         initComponents();
     }
 
@@ -187,7 +187,7 @@ public class consultarSalida extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        registrarSalida nuevoL = new registrarSalida();
+        RegistrarSalida nuevoL = new RegistrarSalida();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -209,20 +209,20 @@ public class consultarSalida extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(consultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(consultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(consultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(consultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new consultarSalida().setVisible(true);
+                new ConsultarSalida().setVisible(true);
             }
         });
     }

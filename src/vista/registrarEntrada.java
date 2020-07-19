@@ -18,13 +18,13 @@ import persistencia.ArticuloJpaController;
  *
  * @author miime
  */
-public class registrarEntrada extends javax.swing.JFrame {
+public class RegistrarEntrada extends javax.swing.JFrame {
 
     private ArticuloJpaController articulo = new ArticuloJpaController();
     private EntradaLogica entradaLogica = new EntradaLogica();
     
     
-    public registrarEntrada() {
+    public RegistrarEntrada() {
         initComponents();
     }
 
@@ -206,14 +206,14 @@ public class registrarEntrada extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        consultarEntrada nuevoL = new consultarEntrada();
+        ConsultarEntrada nuevoL = new ConsultarEntrada();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        registrarSalida nuevoL = new registrarSalida();
+        RegistrarSalida nuevoL = new RegistrarSalida();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -242,13 +242,13 @@ public class registrarEntrada extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -256,7 +256,7 @@ public class registrarEntrada extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new registrarEntrada().setVisible(true);
+                new RegistrarEntrada().setVisible(true);
             }
         });
     }

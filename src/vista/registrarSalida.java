@@ -18,13 +18,13 @@ import persistencia.ArticuloJpaController;
  *
  * @author Personal
  */
-public class registrarSalida extends javax.swing.JFrame {
+public class RegistrarSalida extends javax.swing.JFrame {
 
     private ArticuloJpaController articulo = new ArticuloJpaController();
     private salidaLogica salidaLogica = new salidaLogica();
     
     
-    public registrarSalida() {
+    public RegistrarSalida() {
         initComponents();
     }
     
@@ -277,7 +277,7 @@ public class registrarSalida extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        registrarEntrada nuevoL = new registrarEntrada();
+        RegistrarEntrada nuevoL = new RegistrarEntrada();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -285,7 +285,7 @@ public class registrarSalida extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        consultarSalida nuevoL = new consultarSalida();
+        ConsultarSalida nuevoL = new ConsultarSalida();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -293,7 +293,7 @@ public class registrarSalida extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         
-        consultarDevolucionSalida nuevoL = new consultarDevolucionSalida();
+        ConsultarDevolucionSalida nuevoL = new ConsultarDevolucionSalida();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -323,20 +323,20 @@ public class registrarSalida extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new registrarSalida().setVisible(true);
+                new RegistrarSalida().setVisible(true);
             }
         });
     }

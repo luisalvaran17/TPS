@@ -334,7 +334,7 @@ public class MenuSistema extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegSalidaActionPerformed
 
     private void jButtonRegistrarDevSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarDevSalidaActionPerformed
-        RegistrarDevolucionSalida registrarDevolucionSalida = new RegistrarDevolucionSalida();
+        VistaDevolucionSalida registrarDevolucionSalida = new VistaDevolucionSalida();
         registrarDevolucionSalida.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegistrarDevSalidaActionPerformed
 

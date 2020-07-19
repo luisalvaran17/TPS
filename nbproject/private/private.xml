@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/vista/ArticuloVista.java</file>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/vista/VistaDevolucionSalida.java</file>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/reportes/Persistencia.java</file>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/vista/registrarSalida.java</file>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/persistencia/DevolucionSalidaJpaController.java</file>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/logica/ArticuloLogica.java</file>
-            <file>file:/home/luisalvaranleavpc/Descargas/TPS/src/logica/DevolucionSalidaLogica.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -17,14 +17,14 @@ import persistencia.EntradaJpaController;
  *
  * @author miime
  */
-public class consultarEntrada extends javax.swing.JFrame {
+public class ConsultarEntrada extends javax.swing.JFrame {
     public EntradaJpaController entradaDAO = new EntradaJpaController();
     public ArticuloJpaController articuloDAO = new ArticuloJpaController();
 
     /**
      * Creates new form consultarDevolucionSalida
      */
-    public consultarEntrada() {
+    public ConsultarEntrada() {
         initComponents();
     }
 
@@ -212,7 +212,7 @@ public class consultarEntrada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        registrarEntrada nuevoL = new registrarEntrada();
+        RegistrarEntrada nuevoL = new RegistrarEntrada();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -234,13 +234,13 @@ public class consultarEntrada extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(consultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(consultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(consultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(consultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -248,7 +248,7 @@ public class consultarEntrada extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new consultarEntrada().setVisible(true);
+                new ConsultarEntrada().setVisible(true);
             }
         });
     }
