@@ -8,6 +8,8 @@ package vista;
 import com.placeholder.PlaceHolder;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import logica.DevolucionEntradaLogica;
 import modelo.DevolucionEntrada;
@@ -22,16 +24,20 @@ import persistencia.EntradaJpaController;
  */
 public class VistaDevolucionEntrada extends javax.swing.JFrame {
 
-     /**************************************************************************/
-    public DevolucionEntradaJpaController devolucionEntradaDAO =  new DevolucionEntradaJpaController();
+    /**
+     * ***********************************************************************
+     */
+    public DevolucionEntradaJpaController devolucionEntradaDAO = new DevolucionEntradaJpaController();
     public EntradaJpaController entradaDAO = new EntradaJpaController();
     public DevolucionEntradaLogica devolucionEntradaLogica = new DevolucionEntradaLogica();
     public ArticuloJpaController articuloDAO = new ArticuloJpaController();
     PlaceHolder holder;
 
     PlaceHolder holder2;
-    /**************************************************************************/
-    
+
+    /**
+     * ***********************************************************************
+     */
     /**
      * Creates new form VistaDevolucioneEntrada
      */
@@ -41,30 +47,33 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         this.holder2 = new PlaceHolder(jTextField_cantidadDev, "Número de unidades");
         setLocationRelativeTo(null);
     }
-    /**************************************************************************/
-
 
     /**
-     * @param idEntrada*
+     * ***********************************************************************
+     */
+    /**
+     * @param idEntrada
+     *
      * @param cantidadDev
-     ***********************************************************************/
-    
-    public void actualizarEntrada(String idEntrada, int cantidadDev){
-        
+     * *********************************************************************
+     */
+    public void actualizarEntrada(String idEntrada, int cantidadDev) {
+
         Entrada entrada = entradaDAO.findEntrada(Integer.parseInt(idEntrada));
         int cantidadActual = entrada.getCantidadArticulo();
-        
+
         try {
             entrada.setCantidadArticulo(cantidadActual - cantidadDev);
             entradaDAO.edit(entrada);
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    /**************************************************************************/
 
-    
+    /**
+     * ***********************************************************************
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -92,9 +101,9 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("PRODUCTO");
+        jLabel2.setText("PRODUCTO:");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 130, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 130, 30));
 
         jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
@@ -102,12 +111,12 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 jTextFieldIDActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 160, 30));
+        getContentPane().add(jTextFieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 160, 30));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("DEVOLUCIÓN");
+        jLabel4.setText("DEVOLUCIÓN:");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 150, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 150, 30));
 
         jTextField_cantidadDev.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_cantidadDev.setToolTipText("Ingrese la cantidad del producto que desea devolver");
@@ -116,7 +125,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 jTextField_cantidadDevActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField_cantidadDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 160, 30));
+        getContentPane().add(jTextField_cantidadDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 160, 30));
 
         jButton_confirmarDev.setText("Confirmar");
         jButton_confirmarDev.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +133,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 jButton_confirmarDevActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_confirmarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 180, 40));
+        getContentPane().add(jButton_confirmarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 180, 40));
 
         jButton_cancelarDev.setText("Cancelar");
         jButton_cancelarDev.addActionListener(new java.awt.event.ActionListener() {
@@ -132,15 +141,17 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 jButton_cancelarDevActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_cancelarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 170, 40));
+        getContentPane().add(jButton_cancelarDev, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 170, 40));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 460, -1));
         getContentPane().add(test, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 30, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**************************************************************************/
     private void jButton_confirmarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_confirmarDevActionPerformed
+        /**
+         * ***********************************************************************
+         */
         String idEntrada;
         int cantidadDev, cantidadActual;
         try {
@@ -148,7 +159,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
             if ("".equals(jTextFieldID.getText()) || "".equals(jTextField_cantidadDev.getText())) {
                 JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
 
-            }else{
+            } else {
                 DevolucionEntrada nuevaDevolucionEntrada = new DevolucionEntrada();
                 //Date fechaActual = new Date(2020, 07, 16);
                 Calendar fechaActual = Calendar.getInstance();
@@ -163,20 +174,26 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 cantidadActual = nuevaDevolucionEntrada.getIdEntrada().getCantidadArticulo();
                 System.out.println(idEntrada);
 
-                if (cantidadDev > cantidadActual){
-                    JOptionPane.showMessageDialog(null, "La cantidad de productos a devolver supera la cantidad que salió, ingrese el valor correcto");
-                }else{
+                if (cantidadDev > cantidadActual) {
+                    JOptionPane.showMessageDialog(null, "La cantidad de productos a devolver supera la cantidad que ingresaron, ingrese el valor correcto");
+                } else {
                     devolucionEntradaLogica.registrarDevolucion(nuevaDevolucionEntrada);
+//                    JOptionPane.showMessageDialog(null, "Devolucion registrada exitosamente");
                     actualizarEntrada(idEntrada, cantidadDev);
-                    JOptionPane.showMessageDialog(null, "Devolucion de salida registrada exitosamente");
                 }
             }
-        }
-        /**********************************************************************/
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());       
+            JOptionPane.showMessageDialog(null, "Los campos \"Producto\" y \"Devolución\" deben ser numéricos.");
+            jTextFieldID.setText("");
+            jTextField_cantidadDev.setText("");
             System.out.println(ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(VistaDevolucionEntrada.class.getName()).log(Level.SEVERE, null, ex);
         }
+        /**
+         * *******************************************************************
+         */
     }//GEN-LAST:event_jButton_confirmarDevActionPerformed
 
     private void jButton_cancelarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelarDevActionPerformed

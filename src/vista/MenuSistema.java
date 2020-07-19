@@ -351,6 +351,8 @@ public class MenuSistema extends javax.swing.JFrame {
 
     private void jButtonConsDevEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsDevEntradaActionPerformed
         // TODO add your handling code here:
+        ConsultaDevolucionEntrada consulta = new ConsultaDevolucionEntrada();
+        consulta.setVisible(true);
     }//GEN-LAST:event_jButtonConsDevEntradaActionPerformed
 
     private void jButtonConsEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsEntradaActionPerformed
