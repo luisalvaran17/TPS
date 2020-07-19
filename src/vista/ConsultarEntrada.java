@@ -9,77 +9,74 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.DevolucionSalida;
-import modelo.Salida;
+import modelo.Entrada;
 import persistencia.ArticuloJpaController;
-import persistencia.DevolucionSalidaJpaController;
-import persistencia.SalidaJpaController;
+import persistencia.EntradaJpaController;
 
 /**
  *
- * @author luisalvaranleavpc
+ * @author miime
  */
-public class ConsultarDevolucionSalida extends javax.swing.JFrame {
-    public DevolucionSalidaJpaController devolucionSalidaDAO = new DevolucionSalidaJpaController();
+public class ConsultarEntrada extends javax.swing.JFrame {
+    public EntradaJpaController entradaDAO = new EntradaJpaController();
     public ArticuloJpaController articuloDAO = new ArticuloJpaController();
-    public SalidaJpaController salidaDAO = new SalidaJpaController();
 
     /**
      * Creates new form consultarDevolucionSalida
      */
-    public ConsultarDevolucionSalida() {
+    public ConsultarEntrada() {
         initComponents();
     }
 
-    public void tablaTodos(){
-            List<DevolucionSalida> devSalida = devolucionSalidaDAO.findDevolucionSalidaEntities();
-            DefaultTableModel modelo = new DefaultTableModel();
+    public void tablaEntrada(){
+            List<Entrada> entrada = entradaDAO.findEntradaEntities();
+            DefaultTableModel modeloEntrada = new DefaultTableModel();
             
-                modelo.addColumn("Articulo");
-                modelo.addColumn("ID Devolución");
-                modelo.addColumn("ID Salida");
-                modelo.addColumn("Fecha Devolución");
-                modelo.addColumn("Cantidad");
-                String[] datos = new String[5];
+                modeloEntrada.addColumn("Id Entrada");
+                modeloEntrada.addColumn("Id Artículo");
+                modeloEntrada.addColumn("Artículo");
+                modeloEntrada.addColumn("Fecha Entrada");
+                modeloEntrada.addColumn("Cantidad Artículo");
+                String[] datosEntrada = new String[5];
                 
-                for (DevolucionSalida e : devSalida) {
-                    datos[0] = e.getIdSalida().getIdArticulo().getNombreArticulo();
-                    datos[1] = e.getIdDevolucionSalida().toString();
-                    datos[2] = e.getIdSalida().getIdSalida().toString();
-                    datos[3] = e.getFechaDevSalida().toString();
-                    datos[4] = Integer.toString (e.getCantidadDevSalida());
+                for (Entrada e : entrada) {
+                    datosEntrada[0] = e.getIdEntrada().toString();
+                    datosEntrada[1] = e.getIdArticulo().getIdArticulo().toString();
+                    datosEntrada[2] = e.getIdArticulo().getNombreArticulo();
+                    datosEntrada[3] = e.getFechaEtrada().toString();
+                    datosEntrada[4] = Integer.toString (e.getCantidadArticulo());
                     
-                    modelo.addRow(datos);
+                    modeloEntrada.addRow(datosEntrada);
                 }
                 
-                jTable.setModel(modelo); 
+                jTable.setModel(modeloEntrada); 
     }
     
-    public void tablaBuscar(){
-        List<DevolucionSalida> devSalida = devolucionSalidaDAO.findDevolucionSalidaEntities();
-        DefaultTableModel modelo = new DefaultTableModel();
+    public void tablaBuscarEntrada(){
+        List<Entrada> busquedaEntrada = entradaDAO.findEntradaEntities();
+        DefaultTableModel modeloBusqueda = new DefaultTableModel();
 
-        modelo.addColumn("Articulo");
-        modelo.addColumn("ID Devolución");
-        modelo.addColumn("ID Salida");
-        modelo.addColumn("Fecha Devolución");
-        modelo.addColumn("Cantidad");
-        String[] datos = new String[5];
+        modeloBusqueda.addColumn("Id Entrada");
+        modeloBusqueda.addColumn("Id Artículo");
+        modeloBusqueda.addColumn("Artículo");
+        modeloBusqueda.addColumn("Fecha Entrada");
+        modeloBusqueda.addColumn("Cantidad Artículos");
+        String[] datosEntrada = new String[5];
         
         if ("".equals(jTextFieldBuscar.getText())) {
-            JOptionPane.showMessageDialog(null, "El campo está vacio");
+            JOptionPane.showMessageDialog(null, "El campo está vacío");
         }else{
-            for (DevolucionSalida e: devSalida){
-            if (e.getIdSalida().getIdSalida() == Integer.parseInt(jTextFieldBuscar.getText())) {
-                datos[0] = e.getIdSalida().getIdArticulo().getNombreArticulo();
-                datos[1] = e.getIdDevolucionSalida().toString();
-                datos[2] = e.getIdSalida().getIdSalida().toString();
-                datos[3] = e.getFechaDevSalida().toString();
-                datos[4] = Integer.toString (e.getCantidadDevSalida());
-                modelo.addRow(datos);
+            for (Entrada e: busquedaEntrada){
+            if (e.getIdEntrada() == Integer.parseInt(jTextFieldBuscar.getText())) {
+                datosEntrada[0] = e.getIdEntrada().toString();
+                datosEntrada[1] = e.getIdArticulo().getIdArticulo().toString();
+                datosEntrada[2] = e.getIdArticulo().getNombreArticulo();
+                datosEntrada[3] = e.getFechaEtrada().toString();
+                datosEntrada[4] = Integer.toString (e.getCantidadArticulo());
+                modeloBusqueda.addRow(datosEntrada);
                 }   
             }
-            jTable.setModel(modelo); 
+            jTable.setModel(modeloBusqueda); 
         }
 }
     /**
@@ -99,9 +96,9 @@ public class ConsultarDevolucionSalida extends javax.swing.JFrame {
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,9 +126,14 @@ public class ConsultarDevolucionSalida extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Ingrese la ID de Salida");
+        jLabel1.setText("Ingrese la ID de entrada");
 
         jTextFieldBuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldBuscarActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -147,19 +149,16 @@ public class ConsultarDevolucionSalida extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ir Registrar Salida");
+        jButton1.setText("Ir Registrar Entrada");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ir Devolución Salida");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("CONSULTA ENTRADA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,58 +167,55 @@ public class ConsultarDevolucionSalida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonBuscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonCancelar)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(24, 24, 24))))
+                        .addGap(0, 512, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                            .addComponent(jButtonBuscar))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonConsultar)
-                        .addComponent(jButtonCancelar)))
+                            .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addGap(48, 48, 48)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
-        tablaTodos();
+        tablaEntrada();
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        tablaBuscar();
+        tablaBuscarEntrada();
         
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -229,17 +225,14 @@ public class ConsultarDevolucionSalida extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RegistrarSalida nuevoL = new RegistrarSalida();
+        RegistrarEntrada nuevoL = new RegistrarEntrada();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jTextFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarActionPerformed
         // TODO add your handling code here:
-        VistaDevolucionSalida nuevoL = new VistaDevolucionSalida();
-        nuevoL.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jTextFieldBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,31 +251,34 @@ public class ConsultarDevolucionSalida extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDevolucionSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDevolucionSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDevolucionSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarDevolucionSalida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultarDevolucionSalida().setVisible(true);
+                new ConsultarEntrada().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextFieldBuscar;

@@ -9,74 +9,74 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Entrada;
+import modelo.Articulo;
+import modelo.DevolucionSalida;
+import modelo.Salida;
 import persistencia.ArticuloJpaController;
-import persistencia.EntradaJpaController;
+import persistencia.DevolucionSalidaJpaController;
+import persistencia.SalidaJpaController;
 
 /**
  *
- * @author miime
+ * @author luisalvaranleavpc
  */
-public class ConsultarEntrada extends javax.swing.JFrame {
-    public EntradaJpaController entradaDAO = new EntradaJpaController();
+public class ConsultarArticulo extends javax.swing.JFrame {
+    public DevolucionSalidaJpaController devolucionSalidaDAO = new DevolucionSalidaJpaController();
     public ArticuloJpaController articuloDAO = new ArticuloJpaController();
+    public SalidaJpaController salidaDAO = new SalidaJpaController();
 
     /**
      * Creates new form consultarDevolucionSalida
      */
-    public ConsultarEntrada() {
+    public ConsultarArticulo() {
         initComponents();
     }
 
-    public void tablaEntrada(){
-            List<Entrada> entrada = entradaDAO.findEntradaEntities();
-            DefaultTableModel modeloEntrada = new DefaultTableModel();
+    public void tablaTodos(){
+            List<Articulo> articulo = articuloDAO.findArticuloEntities();
+            DefaultTableModel modelo = new DefaultTableModel();
             
-                modeloEntrada.addColumn("Id Entrada");
-                modeloEntrada.addColumn("Id Artículo");
-                modeloEntrada.addColumn("Artículo");
-                modeloEntrada.addColumn("Fecha Entrada");
-                modeloEntrada.addColumn("Cantidad Artículo");
-                String[] datosEntrada = new String[5];
+                modelo.addColumn("Ref Articulo");
+                modelo.addColumn("Nombre Articulo");
+                modelo.addColumn("Precio");
+                modelo.addColumn("Cantidad");
+                String[] datos = new String[4];
                 
-                for (Entrada e : entrada) {
-                    datosEntrada[0] = e.getIdEntrada().toString();
-                    datosEntrada[1] = e.getIdArticulo().getIdArticulo().toString();
-                    datosEntrada[2] = e.getIdArticulo().getNombreArticulo();
-                    datosEntrada[3] = e.getFechaEtrada().toString();
-                    datosEntrada[4] = Integer.toString (e.getCantidadArticulo());
+                for (Articulo a : articulo) {
+                    datos[0] = a.getIdArticulo().toString();
+                    datos[1] = a.getNombreArticulo().toString();
+                    datos[2] = Integer.toString (a.getPrecioArticulo());
+                    datos[3] = Integer.toString (a.getCantidadArticulo());
                     
-                    modeloEntrada.addRow(datosEntrada);
+                    modelo.addRow(datos);
                 }
                 
-                jTable.setModel(modeloEntrada); 
+                jTable.setModel(modelo); 
     }
     
-    public void tablaBuscarEntrada(){
-        List<Entrada> busquedaEntrada = entradaDAO.findEntradaEntities();
-        DefaultTableModel modeloBusqueda = new DefaultTableModel();
+    public void tablaBuscar(){
+        List<Articulo> articulo = articuloDAO.findArticuloEntities();
+        DefaultTableModel modelo = new DefaultTableModel();
 
-        modeloBusqueda.addColumn("Id Entrada");
-        modeloBusqueda.addColumn("Id Artículo");
-        modeloBusqueda.addColumn("Artículo");
-        modeloBusqueda.addColumn("Fecha Entrada");
-        modeloBusqueda.addColumn("Cantidad Artículos");
-        String[] datosEntrada = new String[5];
+        modelo.addColumn("Ref Articulo");
+        modelo.addColumn("Nombre Articulo");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Cantidad");
+        String[] datos = new String[4];
         
         if ("".equals(jTextFieldBuscar.getText())) {
-            JOptionPane.showMessageDialog(null, "El campo está vacío");
+            JOptionPane.showMessageDialog(null, "El campo está vacio");
         }else{
-            for (Entrada e: busquedaEntrada){
-            if (e.getIdEntrada() == Integer.parseInt(jTextFieldBuscar.getText())) {
-                datosEntrada[0] = e.getIdEntrada().toString();
-                datosEntrada[1] = e.getIdArticulo().getIdArticulo().toString();
-                datosEntrada[2] = e.getIdArticulo().getNombreArticulo();
-                datosEntrada[3] = e.getFechaEtrada().toString();
-                datosEntrada[4] = Integer.toString (e.getCantidadArticulo());
-                modeloBusqueda.addRow(datosEntrada);
+            for (Articulo a: articulo){
+            if (a.getIdArticulo() == Integer.parseInt(jTextFieldBuscar.getText())) {
+                datos[0] = a.getIdArticulo().toString();
+                datos[1] = a.getNombreArticulo().toString();
+                datos[2] = Integer.toString (a.getPrecioArticulo());
+                datos[3] = Integer.toString (a.getCantidadArticulo());
+                modelo.addRow(datos);
                 }   
             }
-            jTable.setModel(modeloBusqueda); 
+            jTable.setModel(modelo); 
         }
 }
     /**
@@ -96,19 +96,20 @@ public class ConsultarEntrada extends javax.swing.JFrame {
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "Articulo", "ID Devolucion", "ID Salida", "Fecha", "Cantidad"
+                "Referencia Articulo", "Nombre", "Precio", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -118,6 +119,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable);
 
         jButtonConsultar.setText("Consultar Todo");
+        jButtonConsultar.setActionCommand("");
         jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsultarActionPerformed(evt);
@@ -125,11 +127,12 @@ public class ConsultarEntrada extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Ingrese la ID de entrada");
+        jLabel1.setText("Ingrese la ID del Articulo");
 
         jTextFieldBuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setActionCommand("");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
@@ -137,18 +140,23 @@ public class ConsultarEntrada extends javax.swing.JFrame {
         });
 
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setActionCommand("");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Ir Registrar Entrada");
+        jButton1.setText("Ir Registrar Artículo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("CONSULTA INVENTARIO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,7 +165,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -165,44 +173,53 @@ public class ConsultarEntrada extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCancelar)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(194, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addContainerGap(195, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                            .addComponent(jButtonBuscar))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonConsultar)
-                        .addComponent(jButtonCancelar)))
+                        .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel2)
+                    .addContainerGap(326, Short.MAX_VALUE)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarActionPerformed
-        tablaEntrada();
+        tablaTodos();
     }//GEN-LAST:event_jButtonConsultarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        tablaBuscarEntrada();
+        tablaBuscar();
         
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -212,7 +229,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RegistrarEntrada nuevoL = new RegistrarEntrada();
+        RegistrarArticulo nuevoL = new RegistrarArticulo();
         nuevoL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -234,21 +251,23 @@ public class ConsultarEntrada extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarArticulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultarEntrada().setVisible(true);
+                new ConsultarArticulo().setVisible(true);
             }
         });
     }
@@ -259,6 +278,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextFieldBuscar;
