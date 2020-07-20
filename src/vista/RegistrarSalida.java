@@ -5,8 +5,8 @@
  */
 package vista;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.salidaLogica;
@@ -246,17 +246,14 @@ public class RegistrarSalida extends javax.swing.JFrame {
         
         try {
             
-            
-            Calendar fechaActual = Calendar.getInstance();
-            Date fechaSalida = fechaActual.getTime();
-            
-            
             Articulo nuevoArticulo = new Articulo();
             Salida nuevaSalida = new Salida();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = new Date();
 
             nuevaSalida.setIdArticulo(articulo.findArticulo(Integer.parseInt(jTextFieldIdArticulo.getText())));
             nuevaSalida.setCantidadArticulo(Integer.parseInt(jTextFieldCantidad.getText()));
-            nuevaSalida.setFechaSalida(fechaSalida);
+            nuevaSalida.setFechaSalida(date);
             
             idArticulo = nuevaSalida.getIdArticulo().getIdArticulo().toString();
             

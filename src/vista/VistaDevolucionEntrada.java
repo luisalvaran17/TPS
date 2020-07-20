@@ -6,7 +6,8 @@
 package vista;
 
 import com.placeholder.PlaceHolder;
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.DevolucionEntradaLogica;
@@ -168,8 +169,8 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 
             }else{
                 DevolucionEntrada nuevaDevolucionEntrada = new DevolucionEntrada();
-                Calendar fechaActual = Calendar.getInstance();
-                Date date = fechaActual.getTime();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                Date date = new Date();
 
                 nuevaDevolucionEntrada.setFechaDevEntrada(date);
                 nuevaDevolucionEntrada.setCantidadDevEntrada(Integer.parseInt(jTextField_cantidadDev.getText()));
@@ -185,12 +186,14 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
                 }else{
                     devolucionEntradaLogica.registrarDevolucion(nuevaDevolucionEntrada);
                     actualizarEntrada(idEntrada, cantidadDev);
-                    JOptionPane.showMessageDialog(null, "Devolucion de salida registrada exitosamente");
+                    JOptionPane.showMessageDialog(null, "Devolución registrada exitosamente");
+                    jTextFieldID.setText("");
+                    jTextField_cantidadDev.setText("");
                 }
             }
         } 
         catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Los campos para \"Producto\" y \"Devolución\" deben ser numéricos");
+            JOptionPane.showMessageDialog(null, "Los campos para \"Producto\" y \"Devolución\" deben ser válidos");
             jTextFieldID.setText("");
             jTextField_cantidadDev.setText("");
             System.out.println(ex.getMessage());

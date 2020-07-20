@@ -41,7 +41,7 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
     public void tablaTodos(){
             List<DevolucionEntrada> devEntrada = devolucionEntradaDAO.findDevolucionEntradaEntities();
             DefaultTableModel modelo = new DefaultTableModel();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             
                 modelo.addColumn("Articulo");
                 modelo.addColumn("ID Devolución");
@@ -68,7 +68,7 @@ public class ConsultaDevolucionEntrada extends javax.swing.JFrame {
     public void tablaBuscar(){
         List<DevolucionEntrada> devEntrada = devolucionEntradaDAO.findDevolucionEntradaEntities();
         DefaultTableModel modelo = new DefaultTableModel();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
         modelo.addColumn("Articulo");
         modelo.addColumn("ID Devolución");

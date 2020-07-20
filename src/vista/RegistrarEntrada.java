@@ -5,8 +5,8 @@
  */
 package vista;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.EntradaLogica;
@@ -178,15 +178,13 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
-            
-            String pattern = "MM-dd-yyyy";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-            
             Entrada nuevaEntrada = new Entrada();
-
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = new Date();
+            
             nuevaEntrada.setIdArticulo(articulo.findArticulo(Integer.parseInt(jTextFieldIdArticulo.getText())));
             nuevaEntrada.setCantidadArticulo(Integer.parseInt(jTextFieldCantidad.getText()));
-            nuevaEntrada.setFechaEtrada(new Date());
+            nuevaEntrada.setFechaEtrada(date);
 
             entradaLogica.registrar(nuevaEntrada);
             

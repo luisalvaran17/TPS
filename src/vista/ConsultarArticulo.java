@@ -5,13 +5,10 @@
  */
 package vista;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Articulo;
-import modelo.DevolucionSalida;
-import modelo.Salida;
 import persistencia.ArticuloJpaController;
 import persistencia.DevolucionSalidaJpaController;
 import persistencia.SalidaJpaController;

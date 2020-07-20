@@ -5,11 +5,11 @@
  */
 package vista;
 
-import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.DevolucionSalidaLogica;
-import modelo.Articulo;
 import modelo.DevolucionSalida;
 import modelo.Salida;
 import persistencia.ArticuloJpaController;
@@ -213,8 +213,8 @@ public class RegistrarDevolucionSalida extends javax.swing.JFrame {
             }else{
                 DevolucionSalida nuevaDevolucionSalida = new DevolucionSalida();
                 //Date fechaActual = new Date(2020, 07, 16);
-                Calendar fechaActual = Calendar.getInstance();
-                Date date = fechaActual.getTime();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                Date date = new Date();
 
                 nuevaDevolucionSalida.setFechaDevSalida(date);
                 nuevaDevolucionSalida.setCantidadDevSalida(Integer.parseInt(jTextField_cantidadDev.getText()));

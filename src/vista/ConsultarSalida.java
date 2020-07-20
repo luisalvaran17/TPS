@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -43,6 +44,7 @@ public class ConsultarSalida extends javax.swing.JFrame {
         List<Articulo> articulo = articuloDAO.findArticuloEntities();
         List<Salida> salida = salidaDAO.findSalidaEntities();
         DefaultTableModel tabla = new DefaultTableModel();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
         tabla.addColumn("Nombre del artículo");
         tabla.addColumn("Fecha");
@@ -64,7 +66,7 @@ public class ConsultarSalida extends javax.swing.JFrame {
                     if(s.getIdSalida() == Integer.parseInt(jTextFieldBusqueda.getText())){
                         
                         datos[0] = s.getIdArticulo().getNombreArticulo();
-                        datos[1] = s.getFechaSalida().toString();
+                        datos[1] = sdf.format(s.getFechaSalida());
                         datos[2] = String.valueOf(s.getCantidadArticulo());
                         
                         tabla.addRow(datos);
@@ -79,7 +81,7 @@ public class ConsultarSalida extends javax.swing.JFrame {
         
         List<Salida> salida = salidaDAO.findSalidaEntities();
         DefaultTableModel modeloSalida = new DefaultTableModel();
-        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
         modeloSalida.addColumn("Nombre del artículo");
         modeloSalida.addColumn("Fecha");
@@ -91,7 +93,7 @@ public class ConsultarSalida extends javax.swing.JFrame {
         for (Salida s: salida){
             
             datosSalida[0] = s.getIdArticulo().getNombreArticulo();
-            datosSalida[1] = s.getFechaSalida().toString();
+            datosSalida[1] = sdf.format(s.getFechaSalida());
             datosSalida[2] = String.valueOf(s.getCantidadArticulo());
             
             modeloSalida.addRow(datosSalida);
@@ -207,12 +209,13 @@ public class ConsultarSalida extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)

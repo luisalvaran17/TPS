@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +31,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
     public void tablaEntrada(){
             List<Entrada> entrada = entradaDAO.findEntradaEntities();
             DefaultTableModel modeloEntrada = new DefaultTableModel();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             
                 modeloEntrada.addColumn("Id Entrada");
                 modeloEntrada.addColumn("Id Artículo");
@@ -42,7 +44,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
                     datosEntrada[0] = e.getIdEntrada().toString();
                     datosEntrada[1] = e.getIdArticulo().getIdArticulo().toString();
                     datosEntrada[2] = e.getIdArticulo().getNombreArticulo();
-                    datosEntrada[3] = e.getFechaEtrada().toString();
+                    datosEntrada[3] = sdf.format(e.getFechaEtrada());
                     datosEntrada[4] = Integer.toString (e.getCantidadArticulo());
                     
                     modeloEntrada.addRow(datosEntrada);
@@ -54,6 +56,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
     public void tablaBuscarEntrada(){
         List<Entrada> busquedaEntrada = entradaDAO.findEntradaEntities();
         DefaultTableModel modeloBusqueda = new DefaultTableModel();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         modeloBusqueda.addColumn("Id Entrada");
         modeloBusqueda.addColumn("Id Artículo");
@@ -70,7 +73,7 @@ public class ConsultarEntrada extends javax.swing.JFrame {
                 datosEntrada[0] = e.getIdEntrada().toString();
                 datosEntrada[1] = e.getIdArticulo().getIdArticulo().toString();
                 datosEntrada[2] = e.getIdArticulo().getNombreArticulo();
-                datosEntrada[3] = e.getFechaEtrada().toString();
+                datosEntrada[3] = sdf.format(e.getFechaEtrada());
                 datosEntrada[4] = Integer.toString (e.getCantidadArticulo());
                 modeloBusqueda.addRow(datosEntrada);
                 }   
