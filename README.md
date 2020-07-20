@@ -7,7 +7,7 @@
 
 ## Importante
 
-##### Se requiere crear primero la Base de Datos TPS_DB y posteriormente importar el archivo TPS_DB.
+##### Se requiere crear primero la base de datos TPS_DB y posteriormente importar el archivo TPS_DB.sql
 
 
 # Técnicas de Pruebas de Software
