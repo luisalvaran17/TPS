@@ -2,8 +2,8 @@
 
 ##### Luz Carime Lucumí Hernández
 ##### Javier Alexis Orozco Manzano
-##### Luis Eduardo Albarán
-##### Stiven Pinzón
+##### Luis Eduardo Albarán Vélez
+##### Stiven Pinzón Triana
 
 # Técnicas de Pruebas de Software
 
