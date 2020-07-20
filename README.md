@@ -1,4 +1,4 @@
-## Integrantes deL grupo
+## Integrantes del grupo
 
 ##### Luz Carime Lucumí Hernández
 ##### Javier Alexis Orozco Manzano
