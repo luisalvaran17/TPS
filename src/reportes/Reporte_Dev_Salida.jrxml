@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a7e3181-6151-4653-acbc-164deeb8acce">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a7e3181-6151-4653-acbc-164deeb8acce">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -26,11 +26,11 @@
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="e520f016-713a-49c9-949c-cd3e10c87bcc"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="f24df790-6132-4fd7-8a4f-bfa4d66c4c38"/>
+					<reportElement x="20" y="0" width="234" height="92" forecolor="#FFFFFF" uuid="f24df790-6132-4fd7-8a4f-bfa4d66c4c38"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Devoluciones]]></text>
+					<text><![CDATA[Devoluciones Salidas]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="33" width="180" height="43" forecolor="#FFFFFF" uuid="be33b854-f563-4ce3-9f09-80e422e305bb"/>

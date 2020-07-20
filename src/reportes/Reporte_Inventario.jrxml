@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f5fc5bb-5c68-47bf-9e31-6361ec278423">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f5fc5bb-5c68-47bf-9e31-6361ec278423">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
 		<![CDATA[select * from articulo;]]>
 	</queryString>
@@ -27,14 +30,14 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[Inventario]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="8fddce9b-fa6d-4017-a836-6979ad97124e"/>
+					<reportElement x="377" y="31" width="198" height="43" forecolor="#FFFFFF" uuid="8fddce9b-fa6d-4017-a836-6979ad97124e"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[Información de artículos de la comercializadora]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -50,28 +53,28 @@
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0524cfba-fd81-4766-96b8-82295c567d68"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="15" isBold="true"/>
 				</textElement>
 				<text><![CDATA[idArticulo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="000254d9-7250-4e9e-bd20-49b7a7b23b22"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="15" isBold="true"/>
 				</textElement>
 				<text><![CDATA[nombreArticulo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f871fbcc-77f8-4e2e-abd2-e045c7ca8f94"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="15" isBold="true"/>
 				</textElement>
 				<text><![CDATA[precioArticulo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4eab954e-000f-477c-a483-23f5b461a3ba"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="15" isBold="true"/>
 				</textElement>
 				<text><![CDATA[cantidadArticulo]]></text>
 			</staticText>
@@ -84,28 +87,28 @@
 			</line>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="0" y="0" width="138" height="20" uuid="8ddfcf50-8310-40cc-9b76-df438af60148"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{idArticulo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="138" y="0" width="138" height="20" uuid="fc0863d3-4725-4625-b730-5a5264b9afc1"/>
-				<textElement>
+				<textElement textAlignment="Justified">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombreArticulo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="276" y="0" width="138" height="20" uuid="f4c68b9f-9f2c-428a-8733-8c168232ee1c"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precioArticulo}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="414" y="0" width="138" height="20" uuid="e032abdc-b006-4e42-b517-dee7f540a01f"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidadArticulo}]]></textFieldExpression>

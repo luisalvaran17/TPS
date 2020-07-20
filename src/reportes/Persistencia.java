@@ -23,28 +23,26 @@ public class Persistencia {
     public static Statement areadb;
     
     
-    public static boolean conectar()
+    public static Connection conectar()
     {
         //variable para el control de errores
         try
         {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                con=DriverManager.getConnection("jdbc:mysql://localhost:3308/TPS_DB", "root", "root");
+                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3308/TPS_DB", "root", "root");
                 areadb = con.createStatement();
                 System.out.println("Conectado");
         }
         catch(ClassNotFoundException se)
         {
                System.out.println("No se ha podido encontrar el driver para MySQL.");
-               return false;
         }
         catch (Exception se)
         {
             System.out.println("No se ha podido conectar a la base de datos ");
-            return false;
         }
 
-        return true;
+        return con;
     }
 
     public static boolean desconectar()
