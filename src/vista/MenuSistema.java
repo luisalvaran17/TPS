@@ -5,6 +5,17 @@
  */
 package vista;
 
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import reportes.Persistencia;
+
 /**
  *
  * @author luisalvaranleavpc
@@ -17,7 +28,7 @@ public class MenuSistema extends javax.swing.JFrame {
     public MenuSistema() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -372,24 +383,125 @@ public class MenuSistema extends javax.swing.JFrame {
 
     private void jButtonRepSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepSalidaActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            Persistencia con = new Persistencia();
+            Connection conn = con.conectar();
+            
+            JasperReport reporte =null;
+            String path= "src\\reportes\\Reporte_Salida.jasper";
+
+            reporte =(JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+            
+        } catch (JRException ex) {
+            Logger.getLogger(MenuSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonRepSalidaActionPerformed
 
     private void jButtonReporteDevSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteDevSalidaActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            Persistencia con = new Persistencia();
+            Connection conn = con.conectar();
+            
+            JasperReport reporte =null;
+            String path= "src\\reportes\\Reporte_Dev_Salida.jasper";
+
+            reporte =(JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+            
+        } catch (JRException ex) {
+            Logger.getLogger(MenuSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReporteDevSalidaActionPerformed
 
     private void jButtonReporteInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteInventarioActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            Persistencia con = new Persistencia();
+            Connection conn = con.conectar();
+            
+            JasperReport reporte =null;
+            String path= "src\\reportes\\Reporte_Inventario.jasper";
+
+            reporte =(JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+            
+        } catch (JRException ex) {
+            Logger.getLogger(MenuSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonReporteInventarioActionPerformed
 
     private void jButtonRepDevEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepDevEntradaActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            Persistencia con = new Persistencia();
+            Connection conn = con.conectar();
+            
+            JasperReport reporte =null;
+            String path= "src\\reportes\\Reporte_Dev_Entrada.jasper";
+
+            reporte =(JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+            
+        } catch (JRException ex) {
+            Logger.getLogger(MenuSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonRepDevEntradaActionPerformed
 
     private void jButtonRepEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepEntradaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRepEntradaActionPerformed
+        
+        try {
+            Persistencia con = new Persistencia();
+            Connection conn = con.conectar();
+            
+            JasperReport reporte =null;
+            String path= "src\\reportes\\Reporte_Entrada.jasper";
 
+            reporte =(JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,conn);
+            
+            JasperViewer view = new JasperViewer(jprint,false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+            
+        } catch (JRException ex) {
+            Logger.getLogger(MenuSistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRepEntradaActionPerformed
+     
     /**
      * @param args the command line arguments
      */
