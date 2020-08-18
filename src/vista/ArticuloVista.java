@@ -16,8 +16,8 @@ import persistencia.ArticuloJpaController;
  * @author luisalvaranleavpc
  */
 public class ArticuloVista extends javax.swing.JFrame {
-    
-    
+
+   
     public ArticuloJpaController articuloDAO = new ArticuloJpaController();
     public ArticuloLogica articuloLogica = new ArticuloLogica();
     /**
@@ -229,7 +229,7 @@ public class ArticuloVista extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
                 
             }else{
-                nuevoArticulo.setIdArticulo(7);
+//                nuevoArticulo.setIdArticulo(7);
                 nuevoArticulo.setNombreArticulo(jTextField_NombreArticulo.getText());
                 nuevoArticulo.setPrecioArticulo(Integer.parseInt(jTextField_precioArticulo.getText()));
                 nuevoArticulo.setCantidadArticulo(Integer.parseInt(jTextField_cantidadArticulo.getText()));

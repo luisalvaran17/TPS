@@ -13,19 +13,24 @@ import persistencia.ArticuloJpaController;
  * @author luisalvaranleavpc
  */
 public class ArticuloLogica {
-    
-    public ArticuloJpaController articuloDAO = new ArticuloJpaController();
-    
-    public void registrarArticulo(Articulo articulo) throws Exception{
-        
-        if(articulo == null){
+
+    private ArticuloJpaController articuloDAO = new ArticuloJpaController();
+
+    /**
+     * @param articulo
+     * @throws Exception 
+     */
+    public final void registrarArticulo(Articulo articulo) throws Exception {
+        if (articulo == null) {
             throw new Exception("Llene los campos");
         }
-        
-        if (articulo.getNombreArticulo() == null || articulo.getPrecioArticulo() <= 0 || articulo.getCantidadArticulo() <= 0){
-            throw new Exception("Asegurese de completar los campos del formulario o de ingresar los valores correctos");
+        if (articulo.getNombreArticulo() == null
+                || articulo.getPrecioArticulo() <= 0
+                || articulo.getCantidadArticulo() <= 0) {
+            throw new Exception(
+                    "Asegurese de completar los campos del formulario"
+                    + " o de ingresar los valores correctos");
         }
         articuloDAO.create(articulo);
     }
-    
 }

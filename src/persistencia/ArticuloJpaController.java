@@ -28,11 +28,10 @@ import persistencia.exceptions.NonexistentEntityException;
  */
 public class ArticuloJpaController implements Serializable {
 
-    
     public ArticuloJpaController() {
         this.emf = Persistence.createEntityManagerFactory("TPS_entrega0PU");
     }
-    
+
     public ArticuloJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
@@ -260,5 +259,5 @@ public class ArticuloJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

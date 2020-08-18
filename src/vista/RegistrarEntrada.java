@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.EntradaLogica;
+import modelo.Articulo;
 import modelo.Entrada;
 import persistencia.ArticuloJpaController;
 
@@ -19,12 +20,29 @@ import persistencia.ArticuloJpaController;
  */
 public class RegistrarEntrada extends javax.swing.JFrame {
 
-    private ArticuloJpaController articulo = new ArticuloJpaController();
+    private ArticuloJpaController articuloDAO = new ArticuloJpaController();
     private EntradaLogica entradaLogica = new EntradaLogica();
-    
-    
+
     public RegistrarEntrada() {
         initComponents();
+    }
+
+    public void actualizarArticulo(String idEntrada, int cantidadArticulo, int precio) {
+
+        Articulo articulo = articuloDAO.findArticulo(Integer.parseInt(idEntrada));
+        int cantidadActual = articulo.getCantidadArticulo();
+        int precioActual = articulo.getPrecioArticulo();
+        int precioNuevo = (precioActual * cantidadActual + precio * cantidadArticulo) /
+                (cantidadActual + cantidadArticulo);
+
+        try {
+            articulo.setCantidadArticulo(cantidadActual + cantidadArticulo);
+            articulo.setPrecioArticulo(precioNuevo);
+            articuloDAO.edit(articulo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
     /**
@@ -46,6 +64,8 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldPrecio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +124,14 @@ public class RegistrarEntrada extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("REGISTRAR ENTRADA");
 
+        jLabel3.setText("PRECIO");
+
+        jTextFieldPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPrecioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,18 +140,21 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 .addGap(172, 172, 172)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)))
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(31, 31, 31)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldCantidad)
                     .addComponent(jTextFieldIdArticulo)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPrecio))
                 .addContainerGap(214, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -142,7 +173,7 @@ public class RegistrarEntrada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -150,7 +181,11 @@ public class RegistrarEntrada extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,21 +212,32 @@ public class RegistrarEntrada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        int cantidad;
+        String id = "";
+        int precio;
         try {
             Entrada nuevaEntrada = new Entrada();
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date date = new Date();
-            
-            nuevaEntrada.setIdArticulo(articulo.findArticulo(Integer.parseInt(jTextFieldIdArticulo.getText())));
-            nuevaEntrada.setCantidadArticulo(Integer.parseInt(jTextFieldCantidad.getText()));
-            nuevaEntrada.setFechaEtrada(date);
 
-            entradaLogica.registrar(nuevaEntrada);
-            
-            JOptionPane.showMessageDialog(null, "Entrada registrada exitosamente");
-            
-            jTextFieldIdArticulo.setText("");
-            jTextFieldCantidad.setText("");
+            cantidad = Integer.parseInt(jTextFieldCantidad.getText());
+            id = jTextFieldIdArticulo.getText();
+            precio = Integer.parseInt(jTextFieldPrecio.getText());
+
+            if (cantidad <= 0) {
+                JOptionPane.showMessageDialog(null, "Ingrese una cantidad correcta");
+            } else {
+                nuevaEntrada.setIdArticulo(articuloDAO.findArticulo(Integer.parseInt(jTextFieldIdArticulo.getText())));
+                nuevaEntrada.setCantidadArticulo(Integer.parseInt(jTextFieldCantidad.getText()));
+                nuevaEntrada.setFechaEtrada(date);
+
+                entradaLogica.registrar(nuevaEntrada);
+                actualizarArticulo(id, cantidad, precio);
+                JOptionPane.showMessageDialog(null, "Entrada registrada exitosamente");
+                jTextFieldIdArticulo.setText("");
+                jTextFieldCantidad.setText("");
+                jTextFieldPrecio.setText("");
+            }
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -222,6 +268,10 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,8 +319,10 @@ public class RegistrarEntrada extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextFieldCantidad;
     private javax.swing.JTextField jTextFieldIdArticulo;
+    private javax.swing.JTextField jTextFieldPrecio;
     // End of variables declaration//GEN-END:variables
 }

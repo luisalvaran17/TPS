@@ -44,7 +44,6 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         initComponents();
         this.holder = new PlaceHolder(jTextFieldID, "ID de la entrega");
         this.holder2 = new PlaceHolder(jTextField_cantidadDev, "Número de unidades");
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -154,6 +153,7 @@ public class VistaDevolucionEntrada extends javax.swing.JFrame {
         getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_confirmarDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_confirmarDevActionPerformed
